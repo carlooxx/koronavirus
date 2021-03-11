@@ -1,50 +1,50 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { globalLastData, croatiaAllData, countyAllData } from "../action/index";
 import { Card } from "react-bootstrap";
-import { globalLastData } from "../action/index";
+import { formatNumb } from "../util";
+import Loader from "../components/Loader";
 
 const CroatiaCard = () => {
   const dispatch = useDispatch();
 
-  const globalLast = useSelector((state) => state.globalLast);
-  const { data } = globalLast;
-
-  const slucajevi = data ? data[0].SlucajeviHrvatska : "";
-  const umrli = data ? data[0].UmrliHrvatska : "";
-  const izljeceni = data ? data[0].IzlijeceniHrvatska : "";
-
   useEffect(() => {
     dispatch(globalLastData());
+    dispatch(croatiaAllData());
+    dispatch(countyAllData());
   }, [dispatch]);
 
-  return (
+  const globalLast = useSelector((state) => state.globalLast);
+  const { lastData } = globalLast;
+
+  return !lastData ? (
+    <Loader />
+  ) : (
     <>
-      <Card className="my-3 p-3 rounded card text" bg="info">
+      <Card className="my-3 p-5 rounded card" bg="info">
         <Card.Body>
           <Card.Title as="h4">Slučajevi</Card.Title>
-          <Card.Text as="h3">
-            {slucajevi} {"  "}
-            <i class="fas fa-viruses"></i>
+          <Card.Text as="h3" style={{ color: "white" }}>
+            HR: {lastData.SlucajeviHrvatska} {"  "}
+            <i className="fas fa-viruses"></i>
           </Card.Text>
         </Card.Body>
       </Card>
-
-      <Card className="my-3 p-3 rounded card" bg="danger">
-        <Card.Body className="text">
+      <Card className="my-3 p-5 rounded card" bg="danger">
+        <Card.Body>
           <Card.Title as="h4">Umrli</Card.Title>
-          <Card.Text as="h3">
-            {umrli} {"  "}
-            <i class="fas fa-head-side-virus"></i>
+          <Card.Text as="h3" style={{ color: "white" }}>
+            HR: {lastData.UmrliHrvatska} {"  "}
+            <i className="fas fa-head-side-virus"></i>
           </Card.Text>
         </Card.Body>
       </Card>
-
-      <Card className="my-3 p-3 rounded card" bg="success">
+      <Card className="my-3 p-5 rounded card" bg="success">
         <Card.Body>
           <Card.Title as="h4">Oporavljeni</Card.Title>
-          <Card.Text as="h3">
-            {izljeceni} {"  "}
-            <i class="far fa-plus-square"></i>
+          <Card.Text as="h3" style={{ color: "white" }}>
+            {lastData.IzlijeceniHrvatska} {"  "}
+            <i className="far fa-plus-square"></i>
           </Card.Text>
         </Card.Body>
       </Card>

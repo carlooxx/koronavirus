@@ -1,7 +1,15 @@
 import axios from "axios";
-import { GET_LAST_DATA_REQUEST, GET_LAST_DATA_SUCCESS } from "./types";
-import { globalLastCovid } from "../api/api";
+import {
+  GET_LAST_DATA_REQUEST,
+  GET_LAST_DATA_SUCCESS,
+  GET_ALL_DATA_REQUEST,
+  GET_ALL_DATA_SUCCESS,
+  GET_LAST_COUNTY_DATA_REQUEST,
+  GET_LAST_COUNTY_DATA_SUCCESS,
+} from "./types";
+import { globalLastCovid, globalCovid, croatiaLastCovid } from "../api/api";
 
+//Podatci zadnji za Svijet i HR
 export const globalLastData = () => async (dispatch) => {
   const { data } = await axios.get(globalLastCovid());
 
@@ -10,6 +18,32 @@ export const globalLastData = () => async (dispatch) => {
   });
   dispatch({
     type: GET_LAST_DATA_SUCCESS,
+    payload: data[0],
+  });
+};
+
+//Podatci svi od pocetka pandemije
+export const croatiaAllData = () => async (dispatch) => {
+  const { data } = await axios.get(globalCovid());
+
+  dispatch({
+    type: GET_ALL_DATA_REQUEST,
+  });
+  dispatch({
+    type: GET_ALL_DATA_SUCCESS,
     payload: data,
+  });
+};
+
+//Podatci zadnji po zupanijama
+export const countyAllData = () => async (dispatch) => {
+  const { data } = await axios.get(croatiaLastCovid());
+
+  dispatch({
+    type: GET_LAST_COUNTY_DATA_REQUEST,
+  });
+  dispatch({
+    type: GET_LAST_COUNTY_DATA_SUCCESS,
+    payload: data[0].PodaciDetaljno,
   });
 };
