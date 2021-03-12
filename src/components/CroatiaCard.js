@@ -23,28 +23,28 @@ const CroatiaCard = () => {
     <>
       <Card className="my-3 p-5 rounded card" bg="info">
         <Card.Body>
-          <Card.Title as="h4">Slučajevi</Card.Title>
-          <Card.Text as="h3" style={{ color: "white" }}>
-            HR: {lastData.SlucajeviHrvatska} {"  "}
-            <i className="fas fa-viruses"></i>
+          <Card.Title>Ukupan Broj Zaraženih</Card.Title>
+          <Card.Text style={{ color: "white" }}>
+            <p>HR: {lastData.SlucajeviHrvatska}</p>
+            <p>Svijet: {lastData.SlucajeviSvijet}</p>
           </Card.Text>
         </Card.Body>
       </Card>
       <Card className="my-3 p-5 rounded card" bg="danger">
         <Card.Body>
-          <Card.Title as="h4">Umrli</Card.Title>
-          <Card.Text as="h3" style={{ color: "white" }}>
-            HR: {lastData.UmrliHrvatska} {"  "}
-            <i className="fas fa-head-side-virus"></i>
+          <Card.Title>Ukupan Broj Umrlih</Card.Title>
+          <Card.Text style={{ color: "white" }}>
+            <p>HR: {lastData.SlucajeviHrvatska}</p>
+            <p>Svijet: {lastData.SlucajeviSvijet}</p>
           </Card.Text>
         </Card.Body>
       </Card>
       <Card className="my-3 p-5 rounded card" bg="success">
         <Card.Body>
-          <Card.Title as="h4">Oporavljeni</Card.Title>
-          <Card.Text as="h3" style={{ color: "white" }}>
-            {lastData.IzlijeceniHrvatska} {"  "}
-            <i className="far fa-plus-square"></i>
+          <Card.Title>Ukupan Broj Oporavljenih</Card.Title>
+          <Card.Text style={{ color: "white" }}>
+            <p>HR: {lastData.SlucajeviHrvatska}</p>
+            <p>Svijet: {lastData.SlucajeviSvijet}</p>
           </Card.Text>
         </Card.Body>
       </Card>

@@ -2,6 +2,8 @@ import React, { useRef, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { select, geoPath, geoMercator, min, max, scaleLinear } from "d3";
 import data from "../../hrv_regional.json";
+import MapInfo from "./MapInfo";
+import MapLabel from "./MapLabel";
 
 const MapChart = () => {
   const [selected, setSelected] = useState(null);
@@ -10,11 +12,11 @@ const MapChart = () => {
 
   const svgRef = useRef();
   const boxRef = useRef();
-  // const tooltipRef = useRef()
+
   useEffect(() => {
     if (countylastData) {
       const svg = select(svgRef.current);
-      // const div = select(tooltipRef.current);
+
       //Min i Max broj aktivnih slucajeva u danu
       const minProp = min(countylastData.map((broj) => broj.broj_aktivni));
       const maxProp = max(countylastData.map((broj) => broj.broj_aktivni));
@@ -36,12 +38,16 @@ const MapChart = () => {
         .data(data.features)
         .join("path")
         .attr("class", "country")
-        .on("mouseenter", (e, geoItem) => {
+        .on("click", (e, geoItem) => {
           let name = geoItem.properties["name"];
           let zupanija = countylastData.find((item) => {
             return item["Zupanija"] === name;
           });
-          setSelected(name);
+          let aktivni = zupanija["broj_aktivni"];
+          let zarazenih = zupanija["broj_zarazenih"];
+          let umrlih = zupanija["broj_umrlih"];
+
+          setSelected([name, aktivni, zarazenih, umrlih]);
         })
         .attr("d", (feature) => pathGenerator(feature))
         .attr("fill", (geoItem) => {
@@ -59,6 +65,9 @@ const MapChart = () => {
   return (
     <>
       <div className="box" ref={boxRef} style={{ marginBottom: "2rem" }}>
+        <h4>Prikaz Aktivnih Slučajeva po Županijama</h4>
+        <MapLabel />
+        <MapInfo selected={selected} />
         <svg ref={svgRef}></svg>
       </div>
     </>
@@ -66,17 +75,3 @@ const MapChart = () => {
 };
 
 export default MapChart;
-
-// .on("click", (e, geoItem) => {
-//   div.transition().style("visibility", "visible");
-//   let name = geoItem.properties["name"];
-//   let zupanija = countylastData.find((item) => {
-//     return item["Zupanija"] === name;
-//   });
-//   let aktivni = zupanija ? zupanija["broj_aktivni"] : [];
-//   let zarazeni = zupanija ? zupanija["broj_zarazenih"] : [];
-//   let umrli = zupanija ? zupanija["broj_umrlih"] : [];
-//   setSelected({ name, aktivni, umrli, zarazeni });
-
-//   div.text(name);
-// })
