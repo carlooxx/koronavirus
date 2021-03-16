@@ -1,8 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { globalLastData, croatiaAllData, countyAllData } from "../action/index";
+import {
+  globalLastData,
+  croatiaAllData,
+  countyAllData,
+  countyActiveData,
+} from "../action/index";
 import { Card } from "react-bootstrap";
-import { formatNumb } from "../util";
 import Loader from "../components/Loader";
 
 const CroatiaCard = () => {
@@ -12,6 +16,7 @@ const CroatiaCard = () => {
     dispatch(globalLastData());
     dispatch(croatiaAllData());
     dispatch(countyAllData());
+    dispatch(countyActiveData());
   }, [dispatch]);
 
   const globalLast = useSelector((state) => state.globalLast);

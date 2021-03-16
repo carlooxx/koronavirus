@@ -6,8 +6,15 @@ import {
   GET_ALL_DATA_SUCCESS,
   GET_LAST_COUNTY_DATA_REQUEST,
   GET_LAST_COUNTY_DATA_SUCCESS,
+  GET_ALL_COUNTY_DATA_REQUEST,
+  GET_ALL_COUNTY_DATA_SUCCESS,
 } from "./types";
-import { globalLastCovid, globalCovid, croatiaLastCovid } from "../api/api";
+import {
+  globalLastCovid,
+  globalCovid,
+  croatiaLastCovid,
+  croatiaCovid,
+} from "../api/api";
 
 //Podatci zadnji za Svijet i HR
 export const globalLastData = () => async (dispatch) => {
@@ -45,5 +52,18 @@ export const countyAllData = () => async (dispatch) => {
   dispatch({
     type: GET_LAST_COUNTY_DATA_SUCCESS,
     payload: data[0].PodaciDetaljno,
+  });
+};
+
+//Svi podatci o broju aktivnih po zupanijama
+export const countyActiveData = () => async (dispatch) => {
+  const { data } = await axios.get(croatiaCovid());
+
+  dispatch({
+    type: GET_ALL_COUNTY_DATA_REQUEST,
+  });
+  dispatch({
+    type: GET_ALL_COUNTY_DATA_SUCCESS,
+    payload: data,
   });
 };

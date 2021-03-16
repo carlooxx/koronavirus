@@ -5,6 +5,8 @@ import {
   GET_ALL_DATA_SUCCESS,
   GET_LAST_COUNTY_DATA_REQUEST,
   GET_LAST_COUNTY_DATA_SUCCESS,
+  GET_ALL_COUNTY_DATA_REQUEST,
+  GET_ALL_COUNTY_DATA_SUCCESS,
 } from "../action/types";
 
 //Podatci na zadnji dan HR i Svijet
@@ -52,6 +54,23 @@ export const countyAllData = (state = { countylastData: [] }, action) => {
     case GET_LAST_COUNTY_DATA_SUCCESS:
       return {
         countylastData: action.payload,
+        loading: false,
+      };
+    default:
+      return { ...state };
+  }
+};
+
+//Svi podatci po zupanijama
+export const countyActiveData = (state = { countyActiveData: [] }, action) => {
+  switch (action.type) {
+    case GET_ALL_COUNTY_DATA_REQUEST:
+      return {
+        loading: true,
+      };
+    case GET_ALL_COUNTY_DATA_SUCCESS:
+      return {
+        countyActiveData: action.payload,
         loading: false,
       };
     default:

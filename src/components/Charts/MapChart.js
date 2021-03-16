@@ -10,6 +10,9 @@ const MapChart = () => {
   const countyLastData = useSelector((state) => state.countyLastData);
   const { countylastData } = countyLastData;
 
+  const svgHeight = 750;
+  const svgWidth = 500;
+
   const svgRef = useRef();
   const boxRef = useRef();
 
@@ -68,7 +71,7 @@ const MapChart = () => {
         <h4>Prikaz Aktivnih Slučajeva po Županijama</h4>
         <MapLabel />
         <MapInfo selected={selected} />
-        <svg ref={svgRef}></svg>
+        <svg ref={svgRef} width={svgWidth} height={svgHeight}></svg>
       </div>
     </>
   );
