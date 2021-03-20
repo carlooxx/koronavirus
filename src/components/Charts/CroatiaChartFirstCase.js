@@ -11,6 +11,8 @@ import {
   extent,
   timeParse,
   curveCardinal,
+  zoomTransform,
+  zoom,
 } from "d3";
 
 //Promatrac promjene dimenzija
@@ -34,7 +36,8 @@ const useResizeObserver = (ref) => {
   return dimensions;
 };
 
-const CroatiaChartFirstCase = () => {
+const CroatiaChartFirstCase = ({ id = "ZoomChart" }) => {
+  const [currentZoom, setCurrentZoom] = useState();
   const fromFirstDayData = useSelector((state) => state.fromFirstDayData);
   const { allData } = fromFirstDayData;
 
@@ -60,6 +63,7 @@ const CroatiaChartFirstCase = () => {
 
   useEffect(() => {
     const svg = select(svgRef.current);
+    const svgContent = svg.select(".content");
 
     if (!dimensions) return;
 
@@ -70,6 +74,11 @@ const CroatiaChartFirstCase = () => {
     const xScale = scaleTime()
       .domain(extent(sortData, (d) => d.datum))
       .range([0, dimensions.width]);
+
+    if (currentZoom) {
+      const newXscale = currentZoom.rescaleX(xScale);
+      xScale.domain(newXscale.domain());
+    }
 
     const yScale = scaleLinear()
       .domain([0, max(sortData, yValue) + 50000])
@@ -96,7 +105,7 @@ const CroatiaChartFirstCase = () => {
       .y((d) => yScale(y2Value(d)))
       .curve(curveCardinal);
 
-    svg
+    svgContent
       .selectAll(".line")
       .data([sortData])
       .join("path")
@@ -105,7 +114,7 @@ const CroatiaChartFirstCase = () => {
       .attr("fill", "none")
       .attr("stroke", "red");
 
-    svg
+    svgContent
       .selectAll(".line2")
       .data([sortData])
       .join("path")
@@ -113,11 +122,30 @@ const CroatiaChartFirstCase = () => {
       .attr("d", oporavljeniLine)
       .attr("fill", "none")
       .attr("stroke", "green");
-  }, [sortData, allData, dimensions]);
+
+    //Zoom
+    const zommBehavior = zoom()
+      .scaleExtent([0.5, 15])
+      .translateExtent([
+        [0, 0],
+        [dimensions.width, dimensions.height],
+      ])
+      .on("zoom", () => {
+        const zoomState = zoomTransform(svg.node());
+        setCurrentZoom(zoomState);
+      });
+    svg.call(zommBehavior).style("cursor", "pointer");
+  }, [sortData, allData, dimensions, currentZoom]);
 
   return (
     <div ref={wrapperRef} className="wrapper">
       <svg ref={svgRef} id="lineChart">
+        <defs>
+          <clipPath id={id}>
+            <rect x="0" y="0" width="100%" height="100%" />
+          </clipPath>
+        </defs>
+        <g className="content" clipPath={`url(#${id})`}></g>
         <text transform={`translate(120, -10)`}>Grafički Pregled Hrvatska</text>
         <g className="x-axis" />
         <g className="y-axis" />

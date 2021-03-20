@@ -51,7 +51,9 @@ const CroatiaChartActive = ({ id = "ZoomChart" }) => {
         const dom = data.map((acc) => acc.broj_aktivni);
         const stradali = dom.reduce((acc, curr) => acc + curr, 0);
 
-        return { stradali: stradali };
+        const umrli = data.map((acc) => acc.broj_umrlih);
+        const umrliSum = umrli.reduce((acc, curr) => acc + curr, 0);
+        return { stradali: stradali, umrli: umrliSum };
       })
     : "";
 
@@ -82,6 +84,7 @@ const CroatiaChartActive = ({ id = "ZoomChart" }) => {
 
     const xValue = (d) => d.datum;
     const yValue = (d) => d.stradali;
+    const y2Value = (d) => d.umrli;
 
     const xScale = scaleTime()
       .domain(extent(sortData, (d) => d.datum))
@@ -112,6 +115,10 @@ const CroatiaChartActive = ({ id = "ZoomChart" }) => {
       .x((d) => xScale(xValue(d)))
       .y((d) => yScale(yValue(d)));
 
+    const umrliLine = line()
+      .x((d) => xScale(xValue(d)))
+      .y((d) => yScale(y2Value(d)));
+
     svgContent
       .selectAll(".line")
       .data([sortData])
@@ -120,6 +127,15 @@ const CroatiaChartActive = ({ id = "ZoomChart" }) => {
       .attr("d", aktivniLine)
       .attr("fill", "none")
       .attr("stroke", "blue");
+
+    svgContent
+      .selectAll(".line2")
+      .data([sortData])
+      .join("path")
+      .attr("class", "line")
+      .attr("d", umrliLine)
+      .attr("fill", "none")
+      .attr("stroke", "grey");
 
     //Zoom
     const zommBehavior = zoom()
@@ -133,7 +149,7 @@ const CroatiaChartActive = ({ id = "ZoomChart" }) => {
         setCurrentZoom(zoomState);
       });
 
-    svg.call(zommBehavior);
+    svg.call(zommBehavior).style("cursor", "pointer");
   }, [dimensions, sortData, currentZoom]);
 
   return (
