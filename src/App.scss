@@ -3,7 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
- 
+
 .card-body {
   font-family: "Nunito Sans", sans-serif;
   padding: 0;
@@ -115,13 +115,12 @@ svg .country:hover {
   padding-left: 3.1rem;
 }
 
-.wrapper{
+.wrapper {
   height: 30vh;
   width: 100%;
   margin: 5rem 4rem;
   padding-right: 5rem;
- 
- 
+
   #lineChart {
     stroke-width: 1px;
     background: #eee;
@@ -130,7 +129,6 @@ svg .country:hover {
     overflow: visible;
   }
 }
-
 
 .tooltip {
   position: absolute;
@@ -144,4 +142,3 @@ svg .country:hover {
   border-radius: 8px;
   pointer-events: none;
 }
-

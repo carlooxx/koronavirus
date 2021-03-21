@@ -137,6 +137,22 @@ const CroatiaChartActive = ({ id = "ZoomChart" }) => {
       .attr("fill", "none")
       .attr("stroke", "grey");
 
+    //Label
+    svg
+      .append("text")
+      .attr("transform", "translate(15, 20)")
+      .attr("dy", ".20em")
+      .attr("text-anchor", "start")
+      .style("fill", "blue")
+      .text("Aktivni");
+    svg
+      .append("text")
+      .attr("transform", "translate(15, 40)")
+      .attr("dy", ".20em")
+      .attr("text-anchor", "start")
+      .style("fill", "grey")
+      .text("Umrli");
+
     //Zoom
     const zommBehavior = zoom()
       .scaleExtent([0.5, 15])
@@ -161,9 +177,7 @@ const CroatiaChartActive = ({ id = "ZoomChart" }) => {
           </clipPath>
         </defs>
         <g className="content" clipPath={`url(#${id})`}></g>
-        <text transform={`translate(120, -10)`}>
-          Aktivni Slučajevi Hrvatska
-        </text>
+        <text transform={`translate(120, -10)`}>Grafički Pregled Hrvatska</text>
         <g className="x-axis" />
         <g className="y-axis" />
       </svg>
