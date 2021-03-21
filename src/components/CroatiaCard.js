@@ -30,20 +30,18 @@ const CroatiaCard = () => {
         <Card.Body>
           <Card.Title>Ukupan Broj Zaraženih</Card.Title>
           <Card.Text style={{ color: "white" }}>
-            <p>
-              HR:{" "}
-              {String(lastData.SlucajeviHrvatska).replace(
-                /(.)(?=(\d{3})+$)/g,
-                "$1,"
-              )}
-            </p>
-            <p>
-              Svijet:{" "}
-              {String(lastData.SlucajeviSvijet).replace(
-                /(.)(?=(\d{3})+$)/g,
-                "$1,"
-              )}
-            </p>
+            HR:{" "}
+            {String(lastData.SlucajeviHrvatska).replace(
+              /(.)(?=(\d{3})+$)/g,
+              "$1,"
+            )}
+          </Card.Text>
+          <Card.Text>
+            Svijet:{" "}
+            {String(lastData.SlucajeviSvijet).replace(
+              /(.)(?=(\d{3})+$)/g,
+              "$1,"
+            )}
           </Card.Text>
         </Card.Body>
       </Card>
@@ -51,17 +49,12 @@ const CroatiaCard = () => {
         <Card.Body>
           <Card.Title>Ukupan Broj Umrlih</Card.Title>
           <Card.Text style={{ color: "white" }}>
-            <p>
-              HR:{" "}
-              {String(lastData.UmrliHrvatska).replace(
-                /(.)(?=(\d{3})+$)/g,
-                "$1,"
-              )}
-            </p>
-            <p>
-              Svijet:{" "}
-              {String(lastData.UmrliSvijet).replace(/(.)(?=(\d{3})+$)/g, "$1,")}
-            </p>
+            HR:{" "}
+            {String(lastData.UmrliHrvatska).replace(/(.)(?=(\d{3})+$)/g, "$1,")}
+          </Card.Text>
+          <Card.Text>
+            Svijet:{" "}
+            {String(lastData.UmrliSvijet).replace(/(.)(?=(\d{3})+$)/g, "$1,")}
           </Card.Text>
         </Card.Body>
       </Card>
@@ -69,20 +62,18 @@ const CroatiaCard = () => {
         <Card.Body>
           <Card.Title>Ukupan Broj Oporavljenih</Card.Title>
           <Card.Text style={{ color: "white" }}>
-            <p>
-              HR:{" "}
-              {String(lastData.IzlijeceniHrvatska).replace(
-                /(.)(?=(\d{3})+$)/g,
-                "$1,"
-              )}
-            </p>
-            <p>
-              Svijet:{" "}
-              {String(lastData.IzlijeceniSvijet).replace(
-                /(.)(?=(\d{3})+$)/g,
-                "$1,"
-              )}
-            </p>
+            HR:{" "}
+            {String(lastData.IzlijeceniHrvatska).replace(
+              /(.)(?=(\d{3})+$)/g,
+              "$1,"
+            )}
+          </Card.Text>
+          <Card.Text>
+            Svijet:{" "}
+            {String(lastData.IzlijeceniSvijet).replace(
+              /(.)(?=(\d{3})+$)/g,
+              "$1,"
+            )}
           </Card.Text>
         </Card.Body>
       </Card>
