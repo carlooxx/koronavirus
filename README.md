@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# Coronavirus Covid-19 Croatia
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+In this project, I show on the map the largest number of active cases of coronavirus infection. 
+By clicking on individual counties, you can see individual data related to the mentioned county.
+Number of active, number of deaths and total number of infected.
+There are errors in the geo.json fromat due to which I do not have data for the two counties.
+Also there are two charts in the app. 
+One shows the number of infected and the number of recovered cases and the other the number of active and dead cases. 
+Drag + scroll (zoom) is enabled on both charts for more detailed reading of data in a unit of time.
 
-## Available Scripts
+## Technologies Used
 
-In the project directory, you can run:
+ReactJS
+React-Bootstrap
+Sass
+State Management - Redux
+D3.js
 
-### `npm start`
+All data downloaded from the official website of the Croatian Institute of Public Health - [koronavirus.hr] (https://www.koronavirus.hr/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The application is not finished, possible changes and upgrades in the future.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# Koronavirus Covid-19 Hrvatska
 
-### `npm test`
+U ovom projektu prikazujem na karti najveci broj aktivnih slucajeva zaraze koronavirusom. 
+Klikom na pojedine zupanije mozete vidjeti pojedinicne podatke vezan za spomenutu zupaniju.
+Broj aktivnih, broj umrlih te ukupan broj zarazenih.
+Postoje greske u geo.json fromatu zbog kojih nemam podatke za dvije zupanije.
+U aplikaciji postoje dva grafikona. 
+Jedan pokazuje broj zarazenih i broj oporavljenih slucajva a drugi broj aktivnih i umrlih slucajeva. 
+Omoguceno je drag + scroll (zoom) na oba grafikona za detaljnije ocitovanje podataka u jedinici vremena
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Koristene Tehnologije
 
-### `npm run build`
+ReactJS
+React-Bootstrap
+Sass
+State Management - Redux
+D3.js
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Svi podatci preuzeti sa sluzbene stranice Hrvatskog zavoda za javno zdravstvo - [koronavirus.hr](https://www.koronavirus.hr/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Aplikacija nije gotova, moguce promjene i nadogradnje u buduce vrijeme.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
