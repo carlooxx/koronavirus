@@ -25,7 +25,7 @@ export const globalLastData = () => async (dispatch) => {
   });
   dispatch({
     type: GET_LAST_DATA_SUCCESS,
-    payload: data[0],
+    payload: data,
   });
 };
 
@@ -51,7 +51,7 @@ export const countyAllData = () => async (dispatch) => {
   });
   dispatch({
     type: GET_LAST_COUNTY_DATA_SUCCESS,
-    payload: data[0].PodaciDetaljno,
+    payload: data.PodaciDetaljno,
   });
 };
 
